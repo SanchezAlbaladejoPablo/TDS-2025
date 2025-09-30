@@ -1,4 +1,4 @@
-package com.tds.expensemanagement;
+package com.tds.gestiongastos;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

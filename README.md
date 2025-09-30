@@ -15,7 +15,7 @@ Este proyecto consiste en el desarrollo de una aplicación de escritorio para la
 1.  **Clonar el repositorio:**
     ```bash
     git clone [URL_DEL_REPOSITORIO]
-    cd expense-management-app
+    cd GestionGastos
     ```
 2.  **Compilar y ejecutar con Maven:**
     Asegúrate de tener Maven y un JDK 11 o superior instalados.

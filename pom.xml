@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tds.expensemanagement</groupId>
-    <artifactId>expense-management-app</artifactId>
+    <groupId>com.tds.gestiongastos</groupId>
+    <artifactId>GestionGastos</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -67,7 +67,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.tds.expensemanagement.App</mainClass>
+                            <mainClass>com.tds.gestiongastos.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>

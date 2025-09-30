@@ -82,14 +82,14 @@ La implementación deberá adherirse a principios de diseño sólido y utilizar 
 El proyecto se organiza en una estructura Maven estándar, con directorios para código fuente, recursos y pruebas. La documentación se gestiona en una carpeta `docs/` separada.
 
 ```
-expense-management-app/
+GestionGastos/
 ├── .gitignore
 ├── pom.xml
 ├── README.md
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/tds/expensemanagement/App.java (Punto de entrada de la aplicación JavaFX)
+│   │   │   └── com/tds/gestiongastos/App.java (Punto de entrada de la aplicación JavaFX)
 │   │   └── resources/ (Archivos FXML, CSS, etc.)
 │   └── test/
 │       └── java/ (Clases de prueba JUnit)
@@ -168,5 +168,25 @@ Este apartado documenta la evolución del proyecto, los cambios realizados, las 
     *   **Justificación:** Aunque `lib/` no es estrictamente necesaria con Maven para dependencias estándar, puede ser útil para JARs externos. `test-h2/` se añadió para mantener la coherencia con el ejemplo, sugiriendo un espacio para pruebas específicas o configuraciones de base de datos H2.
 *   **Cambio:** Actualización de la sección "Estructura del Proyecto y Archivos Clave" en `CONTEXT.md`.
     *   **Decisión:** Se modificó la representación de la estructura de directorios en el `CONTEXT.md` para incluir las nuevas carpetas `lib/` y `test-h2/`.
+    *   **Justificación:** Para mantener el archivo de contexto preciso y reflejar el estado actual del proyecto, incluyendo todos los cambios de estructura realizados.
+
+
+
+### 9.4. Renombrado del Proyecto a GestionGastos (30 de septiembre de 2025)
+
+*   **Cambio:** Renombrado del directorio raíz del proyecto de `expense-management-app` a `GestionGastos`.
+    *   **Decisión:** A petición del usuario, para estandarizar el nombre del proyecto.
+    *   **Justificación:** Un nombre de proyecto claro y consistente es crucial para la identificación y gestión del mismo.
+*   **Cambio:** Actualización del `pom.xml`.
+    *   **Decisión:** Se modificó el `artifactId` a `GestionGastos` y el `groupId` a `com.tds.gestiongastos`. También se actualizó la `mainClass` en la configuración del plugin de JavaFX a `com.tds.gestiongastos.App`.
+    *   **Justificación:** Reflejar el nuevo nombre del proyecto y el paquete base en la configuración de Maven.
+*   **Cambio:** Renombrado del paquete Java principal y actualización de `App.java`.
+    *   **Decisión:** El directorio `com/tds/expensemanagement` fue renombrado a `com/tds/gestiongastos`, y la declaración del paquete en `App.java` fue actualizada a `package com.tds.gestiongastos;`.
+    *   **Justificación:** Mantener la coherencia entre el nombre del proyecto, la estructura de directorios y el código fuente.
+*   **Cambio:** Actualización del `README.md`.
+    *   **Decisión:** Se actualizó la instrucción de clonación del repositorio en el `README.md` para usar `cd GestionGastos`.
+    *   **Justificación:** Para reflejar el nuevo nombre del directorio raíz del proyecto y asegurar que las instrucciones de ejecución sean correctas.
+*   **Cambio:** Actualización de la sección "Estructura del Proyecto y Archivos Clave" en `CONTEXT.md`.
+    *   **Decisión:** Se modificó la representación de la estructura de directorios en el `CONTEXT.md` para reflejar el nuevo nombre del directorio raíz y el paquete Java.
     *   **Justificación:** Para mantener el archivo de contexto preciso y reflejar el estado actual del proyecto, incluyendo todos los cambios de estructura realizados.
 

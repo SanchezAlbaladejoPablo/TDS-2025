@@ -35,8 +35,6 @@ La documentación detallada del proyecto se encuentra en la carpeta `docs/`.
 *   [Manual de Usuario](docs/manual_usuario.md)
 
 
-*   [Contexto del Proyecto](docs/CONTEXT.md)
-
 
 ## Estructura del Proyecto
 

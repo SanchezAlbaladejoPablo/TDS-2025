@@ -18,7 +18,7 @@ Este proyecto consiste en el desarrollo de una aplicación de escritorio para la
     cd GestionGastos
     ```
 2.  **Compilar y ejecutar con Maven:**
-    Asegúrate de tener Maven y un JDK 11 o superior instalados.
+    Asegúrate de tener Maven y un JDK 21 instalado.
     ```bash
     mvn clean javafx:run
     ```
@@ -53,24 +53,19 @@ La documentación detallada del proyecto se encuentra en la carpeta `docs/`.
 │   ├── manual_usuario.md
 │   └── patrones_diseno.md
 └── src/
-    ├── main/
-    │   ├── java/
-    │   │   └── com/
-    │   │       └── tds/
-    │   │           └── gestiongastos/
-    │   │               ├── App.java
-    │   │               ├── controlador/
-    │   │               │   └── package-info.java
-    │   │               ├── modelo/
-    │   │               │   └── package-info.java
-    │   │               ├── persistencia/
-    │   │               │   └── package-info.java
-    │   │               ├── tds/
-    │   │               │   └── package-info.java
-    │   │               └── vista/
-    │   │                   └── package-info.java
-    │   └── resources/
-    │       └── .gitkeep
+    ├── com/
+    │   └── tds/
+    │       └── gestiongastos/
+    │           ├── controlador/
+    │           │   └── controlador.java
+    │           ├── modelo/
+    │           │   └── 
+    │           ├── persistencia/
+    │           │   └── 
+    │           └── vista/
+    │               └── 
+    ├── resources/
+    │   └── .gitkeep
     └── test/
         └── java/
             └── .gitkeep

@@ -46,7 +46,6 @@ La documentación detallada del proyecto se encuentra en la carpeta `docs/`.
 ├── test-h2/
 │   └── .gitkeep
 ├── docs/
-│   ├── CONTEXT.md
 │   ├── arquitectura_diseno.md
 │   ├── diagrama_clases_dominio.md
 │   ├── diagrama_interaccion.md

@@ -1,5 +1,11 @@
 # Gestión de Gastos Personales
 
+## Participantes
+Este proyecto ha sido realizado por: 
+- Javier Munuera Guirao
+- Pablo Sánchez Albaladejo
+- Juan Miguel Conesa Cerón
+
 ## Descripción del Proyecto
 
 Este proyecto consiste en el desarrollo de una aplicación de escritorio para la gestión y el control de gastos personales. La aplicación permitirá a los usuarios registrar, editar y borrar gastos, organizarlos por categorías, y visualizar la información de diversas maneras (tablas, gráficos). Además, incluirá un sistema de alertas configurable, gestión de cuentas de gasto compartidas y la importación de datos desde fuentes externas. La interfaz de usuario se implementará con JavaFX, y la persistencia de datos se realizará en formato JSON utilizando la librería Jackson, siguiendo el patrón Repositorio. El proyecto será gestionado con Maven y Git.

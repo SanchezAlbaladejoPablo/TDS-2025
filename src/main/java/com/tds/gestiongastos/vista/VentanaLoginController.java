@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import com.tds.gestiongastos.*;
+import com.tds.gestiongastos.controlador.Controlador;
 
 public class VentanaLoginController {
 
@@ -14,14 +14,22 @@ public class VentanaLoginController {
 
     @FXML
     private void handleLogin() {
-        if ("admin".equals(campoUsuario.getText()) && "1234".equals(campoPassword.getText())) {
+        String usuario = campoUsuario.getText();
+        String password = campoPassword.getText();
+
+        if (Controlador.getInstance().autenticarUsuario(usuario, password)) {
             Controlador.getInstance().mostrarMenu();
         } else {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Error de autenticación");
             alert.setHeaderText(null);
-            alert.setContentText("Usuario o contraseña incorrectos");
+            alert.setContentText("Usuario o contraseña incorrectos.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    private void handleRegistro() {
+        Controlador.getInstance().mostrarRegistro();
     }
 }

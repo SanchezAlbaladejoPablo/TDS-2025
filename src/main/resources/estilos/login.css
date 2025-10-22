@@ -1,0 +1,46 @@
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom right, #283e51, #485563);
+}
+
+.login-box {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-padding: 40;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
+}
+
+.titulo {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-background-radius: 8;
+    -fx-background-color: white;
+    -fx-padding: 10;
+}
+
+.boton-login {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+}
+
+.boton-login:hover {
+    -fx-background-color: #45a049;
+}
+
+.boton-secundario {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-border-radius: 8;
+    -fx-padding: 8 20;
+}
+
+.boton-secundario:hover {
+    -fx-background-color: rgba(255,255,255,0.15);
+}

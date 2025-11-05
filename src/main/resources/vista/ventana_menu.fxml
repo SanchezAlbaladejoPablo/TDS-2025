@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.tds.gestiongastos.vista.VentanaMenuController"
-      alignment="CENTER" spacing="10" padding="30">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.tds.gestiongastos.vista.VentanaMenuController"
+            styleClass="root-pane"
+            >	
+    <!-- 🟦 Barra superior -->
+    <top>
+        <HBox styleClass="top-bar">
+            <Label text="💰 Gestión de Gastos" styleClass="app-title" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button text="Usuario ⚙️" styleClass="user-button" />
+        </HBox>
+    </top>
 
-    <Label text="Bienvenido al menú principal" style="-fx-font-size: 18px;"/>
-</VBox>
+    <!-- 🟩 Panel lateral -->
+	<!-- 🟩 Panel lateral -->
+	<left>
+	    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="sidebar">
+	        <VBox spacing="15" styleClass="menu-section">
+	            <padding>
+	                <Insets top="10" right="10" bottom="10" left="10"/>
+	            </padding>
+	
+	            <!-- 📘 Gastos -->
+	            <VBox spacing="5">
+	                <Label text="📘 Gastos" styleClass="menu-title" />
+	                <Button text="Registrar gasto" styleClass="menu-button" />
+	                <Button text="Ver / Editar / Eliminar" styleClass="menu-button" />
+	                <Button text="Categorías" styleClass="menu-button" />
+	            </VBox>
+	
+	            <!-- 📊 Análisis -->
+	            <VBox spacing="5">
+	                <Label text="📊 Análisis" styleClass="menu-title" />
+	                <Button text="Tabla / Lista" styleClass="menu-button" />
+	                <Button text="Gráficos" styleClass="menu-button" />
+	                <Button text="Calendario" styleClass="menu-button" />
+	                <Button text="Filtros" styleClass="menu-button" />
+	            </VBox>
+	
+	            <!-- 🔔 Alertas -->
+	            <VBox spacing="5">
+	                <Label text="🔔 Alertas y Notificaciones" styleClass="menu-title" />
+	                <Button text="Configurar alertas" styleClass="menu-button" />
+	                <Button text="Alertas por categoría" styleClass="menu-button" />
+	                <Button text="Historial de notificaciones" styleClass="menu-button" />
+	            </VBox>
+	
+	            <!-- 👥 Cuentas compartidas -->
+	            <VBox spacing="5">
+	                <Label text="👥 Cuentas compartidas" styleClass="menu-title" />
+	                <Button text="Crear cuenta compartida" styleClass="menu-button" />
+	                <Button text="Registrar gasto en grupo" styleClass="menu-button" />
+	                <Button text="Ver saldos" styleClass="menu-button" />
+	                <Button text="Definir participaciones" styleClass="menu-button" />
+	            </VBox>
+	
+	            <!-- 📂 Importar -->
+	            <VBox spacing="5">
+	                <Label text="📂 Importar datos" styleClass="menu-title" />
+	                <Button text="Importar desde banco" styleClass="menu-button" />
+	                <Button text="Importar CSV / TXT" styleClass="menu-button" />
+	            </VBox>
+	
+	            <!-- ⚙️ Configuración -->
+	            <VBox spacing="5">
+	                <Label text="⚙️ Configuración" styleClass="menu-title" />
+	                <Button text="Guardado automático (JSON)" styleClass="menu-button" />
+	                <Button text="Cargar datos al iniciar" styleClass="menu-button" />
+	                <Button text="Modo CLI" styleClass="menu-button" />
+	            </VBox>
+	
+	        </VBox>
+	    </ScrollPane>
+	</left>
+
+
+    <!-- 🟨 Panel central (zona dinámica) -->
+    <center>
+        <StackPane styleClass="content-area">
+            <Label text="[Aquí se cargará el contenido dinámico]" styleClass="placeholder-text" />
+        </StackPane>
+    </center>
+
+</BorderPane>

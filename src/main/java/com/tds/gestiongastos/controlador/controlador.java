@@ -36,8 +36,7 @@ public class Controlador {
     }
 
     public void mostrarMenu() {
-        // TODO
-        System.out.println("Login exitoso. Mostrando menú...");
+        cargarVista("/vista/ventana_menu.fxml", "Menu");
     }
 
 
@@ -46,7 +45,7 @@ public class Controlador {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/estilos/login.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/estilos/estilos.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle(titulo);
             stage.show();

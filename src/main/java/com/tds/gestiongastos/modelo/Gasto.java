@@ -1,27 +1,24 @@
 package com.tds.gestiongastos.modelo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Gasto {
 
-	private final int id;
 	private double valor;
 	private Persona persona;
 	private String articulo;
-	private LocalDate fecha;
+	private LocalDateTime fecha;
+	private Categoria categoria;
 	
-	public Gasto(int id, double valor, Persona persona, String articulo) {
-		this.id=id;
-		this.persona = persona;
+	public Gasto( double valor, String articulo, Persona p, Categoria categoria) {
 		this.valor = valor;
 		this.articulo = articulo;
-		this.fecha = LocalDate.now();
+		this.fecha = LocalDateTime.now();
+		this.persona = p;
+		this.categoria = categoria;
 	}
 
-	public int getId() {
-		return id;
-	}
-
+	
 	public double getValor() {
 		return valor;
 	}
@@ -34,13 +31,42 @@ public class Gasto {
 		return articulo;
 	}
 
-	public LocalDate getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
-	}	
+	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
 
 	
-	
-	
-	
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public void setArticulo(String articulo) {
+		this.articulo = articulo;
+	}
+
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Gasto [articulo=" + articulo + ", valor=" + valor + ", persona=" + persona.getUsuario() 
+				+ ", fecha=" + fecha + ", categoria=" + categoria + "]";
+	}
+
 	
 }

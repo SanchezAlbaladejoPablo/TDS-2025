@@ -54,69 +54,54 @@ public class GestorGastos {
         return Map.of();
     }
 
-   
-
     public List<Gasto> obtenerGastosPorPersona(Persona persona) {
-        List<Gasto> resultado = new ArrayList<>();
+        return cuentas.stream()
+            .<Gasto>flatMap(cuenta -> { // Indicando el tipo de Stream que flatMap debe manejar
+                if (cuenta instanceof CuentaCompartida) {
+                    CuentaCompartida cc = (CuentaCompartida) cuenta;
+                    
+                    if (cc.getParticipantes().containsKey(persona)) {
+                        final double factor = cc.getParticipantes().get(persona) / 100.0;
 
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta instanceof CuentaCompartida) {
-                CuentaCompartida cc = (CuentaCompartida) cuenta;
-                // Solo procesar si la persona es participante
-                if (cc.getParticipantes().containsKey(persona)) {
-                    double porcentaje = cc.getParticipantes().get(persona);
-                    for (Gasto gasto : cc.obtenerGastos()) {
-                        double valorAjustado = gasto.getValor() * porcentaje / 100.0;
-                        Gasto gastoAjustado = new Gasto(
-                                valorAjustado,
-                                gasto.getConcepto(),
-                                gasto.getPersona(),
-                                gasto.getCategoria()
-                        );
-                        gastoAjustado.setFecha(gasto.getFecha());
-                        resultado.add(gastoAjustado);
+                        return cc.obtenerGastos().stream()
+                            .map(gasto -> {
+                                double valorAjustado = gasto.getValor() * factor;
+                                Gasto gastoAjustado = new Gasto(
+                                        valorAjustado, gasto.getConcepto(),
+                                        gasto.getPersona(), gasto.getCategoria()
+                                );
+                                gastoAjustado.setFecha(gasto.getFecha());
+                                return gastoAjustado;
+                            });
                     }
+                } else if (cuenta.getTitular().equals(persona)) {
+                    return cuenta.obtenerGastos().stream();
                 }
-            } else {
-                // Cuenta individual
-                if (cuenta.getTitular().equals(persona)) {
-                    for (Gasto gasto : cuenta.obtenerGastos()) {
-                        resultado.add(gasto);
-                    }
-                }
-            }
-        }
-
-        return resultado;
+                return Stream.empty(); // Ahora el tipo se infiere correctamente
+            })
+            .collect(Collectors.toList());
     }
 
- // Calcula el total de gastos que corresponden a una persona
     public double calcularTotalPorPersona(Persona persona) {
-        double total = 0;
-
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta instanceof CuentaCompartida) {
-                CuentaCompartida cc = (CuentaCompartida) cuenta;
-                // Solo procesar si la persona es participante
-                if (cc.getParticipantes().containsKey(persona)) {
-                    double porcentaje = cc.getParticipantes().get(persona);
-                    for (Gasto gasto : cc.obtenerGastos()) {
-                        total += gasto.getValor() * porcentaje / 100.0;
+        return cuentas.stream()
+            .mapToDouble((Cuenta cuenta) -> {
+                if (cuenta instanceof CuentaCompartida) {
+                    CuentaCompartida cc = (CuentaCompartida) cuenta;
+                    if (cc.getParticipantes().containsKey(persona)) {
+                        double porcentaje = cc.getParticipantes().get(persona);
+                        return cc.obtenerGastos().stream()
+                            .mapToDouble(gasto -> gasto.getValor() * porcentaje / 100.0)
+                            .sum();
                     }
+                } else if (cuenta.getTitular().equals(persona)) {
+                    return cuenta.obtenerGastos().stream()
+                        .mapToDouble(Gasto::getValor)
+                        .sum();
                 }
-            } else {
-                // Cuenta individual
-                if (cuenta.getTitular().equals(persona)) {
-                    for (Gasto gasto : cuenta.obtenerGastos()) {
-                        total += gasto.getValor();
-                    }
-                }
-            }
-        }
-
-        return total;
+                return 0.0;
+            })
+            .sum();
     }
-
 
     
     

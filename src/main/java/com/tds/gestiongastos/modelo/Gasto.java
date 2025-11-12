@@ -10,7 +10,7 @@ public class Gasto {
 	private LocalDateTime fecha;
 	private Categoria categoria;
 	
-	public Gasto( double valor, String articulo, Persona p, Categoria categoria) {
+	public Gasto( double valor, String concepto, Persona p, Categoria categoria) {
 		this.valor = valor;
 		this.concepto = concepto;
 		this.fecha = LocalDateTime.now();

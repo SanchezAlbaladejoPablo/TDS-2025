@@ -6,7 +6,6 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.tds.gestiongastos.vista.VentanaMenuController"
             styleClass="root-pane"
             >	
     <!-- 🟦 Barra superior -->

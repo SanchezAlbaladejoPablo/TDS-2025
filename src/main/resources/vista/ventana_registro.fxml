@@ -6,7 +6,6 @@
 
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.tds.gestiongastos.vista.VentanaRegistroController"
            styleClass="root-pane">
 
     <VBox alignment="CENTER" spacing="20" maxWidth="400" styleClass="login-box">

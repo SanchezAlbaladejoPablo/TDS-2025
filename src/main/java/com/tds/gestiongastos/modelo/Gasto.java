@@ -6,13 +6,13 @@ public class Gasto {
 
 	private double valor;
 	private Persona persona;
-	private String articulo;
+	private String concepto;
 	private LocalDateTime fecha;
 	private Categoria categoria;
 	
 	public Gasto( double valor, String articulo, Persona p, Categoria categoria) {
 		this.valor = valor;
-		this.articulo = articulo;
+		this.concepto = concepto;
 		this.fecha = LocalDateTime.now();
 		this.persona = p;
 		this.categoria = categoria;
@@ -27,8 +27,8 @@ public class Gasto {
 		return persona;
 	}
 
-	public String getArticulo() {
-		return articulo;
+	public String getConcepto() {
+		return concepto;
 	}
 
 	public LocalDateTime getFecha() {
@@ -53,8 +53,8 @@ public class Gasto {
 		this.persona = persona;
 	}
 
-	public void setArticulo(String articulo) {
-		this.articulo = articulo;
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
 	}
 
 	public void setFecha(LocalDateTime fecha) {
@@ -64,7 +64,7 @@ public class Gasto {
 
 	@Override
 	public String toString() {
-		return "Gasto [articulo=" + articulo + ", valor=" + valor + ", persona=" + persona.getUsuario() 
+		return "Gasto [concepto=" + concepto + ", valor=" + valor + ", persona=" + persona.getUsuario() 
 				+ ", fecha=" + fecha + ", categoria=" + categoria + "]";
 	}
 

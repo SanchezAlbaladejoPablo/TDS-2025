@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GestorGastos {
 
@@ -30,13 +31,6 @@ public class GestorGastos {
         return new ArrayList<>(cuentas);
     }
 
-    // Añadir gasto a una cuenta
-    public void añadirGastoACuenta(Cuenta cuenta, Gasto gasto) {
-        if (cuenta != null && cuentas.contains(cuenta)) {
-            cuenta.añadirGasto(gasto);
-        }
-    }
-
 
     // Calcular total por cuenta
     public double calcularTotalCuenta(Cuenta cuenta) {
@@ -54,53 +48,12 @@ public class GestorGastos {
         return Map.of();
     }
 
-    public List<Gasto> obtenerGastosPorPersona(Persona persona) {
-        return cuentas.stream()
-            .<Gasto>flatMap(cuenta -> { // Indicando el tipo de Stream que flatMap debe manejar
-                if (cuenta instanceof CuentaCompartida) {
-                    CuentaCompartida cc = (CuentaCompartida) cuenta;
-                    
-                    if (cc.getParticipantes().containsKey(persona)) {
-                        final double factor = cc.getParticipantes().get(persona) / 100.0;
-
-                        return cc.obtenerGastos().stream()
-                            .map(gasto -> {
-                                double valorAjustado = gasto.getValor() * factor;
-                                Gasto gastoAjustado = new Gasto(
-                                        valorAjustado, gasto.getConcepto(),
-                                        gasto.getPersona(), gasto.getCategoria()
-                                );
-                                gastoAjustado.setFecha(gasto.getFecha());
-                                return gastoAjustado;
-                            });
-                    }
-                } else if (cuenta.getTitular().equals(persona)) {
-                    return cuenta.obtenerGastos().stream();
-                }
-                return Stream.empty(); // Ahora el tipo se infiere correctamente
-            })
-            .collect(Collectors.toList());
-    }
-
-    public double calcularTotalPorPersona(Persona persona) {
-        return cuentas.stream()
-            .mapToDouble((Cuenta cuenta) -> {
-                if (cuenta instanceof CuentaCompartida) {
-                    CuentaCompartida cc = (CuentaCompartida) cuenta;
-                    if (cc.getParticipantes().containsKey(persona)) {
-                        double porcentaje = cc.getParticipantes().get(persona);
-                        return cc.obtenerGastos().stream()
-                            .mapToDouble(gasto -> gasto.getValor() * porcentaje / 100.0)
-                            .sum();
-                    }
-                } else if (cuenta.getTitular().equals(persona)) {
-                    return cuenta.obtenerGastos().stream()
-                        .mapToDouble(Gasto::getValor)
-                        .sum();
-                }
-                return 0.0;
-            })
-            .sum();
+  //Obtener los gastos de cada miembro de la cuenta
+    public List<Gasto> obtenerGastosPorPersona(Persona p){
+    	return cuentas.stream()
+                .flatMap(cuenta -> cuenta.obtenerGastos().stream())
+                .filter(gasto -> gasto.getPersona().equals(p))
+                .collect(Collectors.toList());
     }
 
     

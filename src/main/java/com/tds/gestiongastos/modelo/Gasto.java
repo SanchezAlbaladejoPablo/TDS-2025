@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 public class Gasto {
 
-	private double valor;
-	private Persona persona;
-	private String concepto;
-	private LocalDateTime fecha;
-	private Categoria categoria;
+	private final double valor;
+	private final Persona persona;
+	private final String concepto;
+	private final LocalDateTime fecha;
+	private final Categoria categoria;
 	
 	public Gasto( double valor, String concepto, Persona p, Categoria categoria) {
 		this.valor = valor;
@@ -37,28 +37,6 @@ public class Gasto {
 	
 	public Categoria getCategoria() {
 		return categoria;
-	}
-
-	
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
-
-	public void setConcepto(String concepto) {
-		this.concepto = concepto;
-	}
-
-	public void setFecha(LocalDateTime fecha) {
-		this.fecha = fecha;
 	}
 
 

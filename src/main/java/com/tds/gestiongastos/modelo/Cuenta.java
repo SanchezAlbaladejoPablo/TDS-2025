@@ -6,50 +6,57 @@ import java.util.stream.Collectors;
 
 public class Cuenta {
 
-    private String nombreCuenta;
-    private Persona titular;
-    private List<Gasto> gastos;
+	private String nombreCuenta;
+	private Persona titular;
+	private List<Gasto> gastos;
 
-    public Cuenta(String nombreCuenta, Persona titular) {
-        this.nombreCuenta = nombreCuenta;
-        this.titular = titular;
-        this.gastos = new ArrayList<>();
-    }
+	public Cuenta(String nombreCuenta, Persona titular) {
+		this.nombreCuenta = nombreCuenta;
+		this.titular = titular;
+		this.gastos = new ArrayList<>();
+	}
 
-    // Añadir gasto
-    public void añadirGasto(Gasto gasto) {
-        if (gasto != null) {
-            gastos.add(gasto);
-        }
-    }
+	// Añadir gasto
+	public void añadirGasto(Gasto gasto) {
+		if (gasto != null) {
+			gastos.add(gasto);
+		}
+	}
 
-    // Eliminar gasto
-    public boolean eliminarGasto(Gasto gasto) {
-        return gastos.remove(gasto);
-    }
+	// Eliminar gasto
+	public boolean eliminarGasto(Gasto gasto) {
+		return gastos.remove(gasto);
+	}
 
-    // Obtener lista de gastos
-    public List<Gasto> obtenerGastos() {
-        return new ArrayList<>(gastos);
-    }
-    
-    
-    // Calcular total de gastos
-    public double calcularTotal() {
-        return gastos.stream().mapToDouble(Gasto::getValor).sum();
-    }
-    
-    public double calcularTotalPorPersona(Persona persona) {
-        if (!titular.equals(persona)) {
-            return 0.0;
-        }
-        return calcularTotal();
-    }
+	// Obtener lista de gastos
+	public List<Gasto> obtenerGastos() {
+		return new ArrayList<>(gastos);
+	}
 
-    // Getters
-    public String getNombreCuenta() { return nombreCuenta; }
-    public Persona getTitular() { return titular; }
-    
-    
+	// Obtener el gasto por persona
+	public List<Gasto> obtenerGastosPorPersona(Persona persona) {
+		return gastos.stream().filter(g -> g.getPersona().equals(persona)).collect(Collectors.toList());
+	}
+
+	// Calcular total de gastos
+	public double calcularTotal() {
+		return gastos.stream().mapToDouble(Gasto::getValor).sum();
+	}
+
+	public double calcularTotalPorPersona(Persona persona) {
+		if (!titular.equals(persona)) {
+			return 0.0;
+		}
+		return calcularTotal();
+	}
+
+	// Getters
+	public String getNombreCuenta() {
+		return nombreCuenta;
+	}
+
+	public Persona getTitular() {
+		return titular;
+	}
+
 }
-

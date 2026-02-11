@@ -20,6 +20,14 @@ public class CuentaCompartida extends Cuenta {
 
 		this.participantes = new HashMap<>(porcentajePorParticipante);
 	}
+	
+	// Distribución equitativa (por defecto)
+	public CuentaCompartida(String nombreCuenta, Persona titular, List<Persona> personas) {
+	    super(nombreCuenta, titular);
+	    double porcentaje = 100.0 / personas.size();
+	    this.participantes = new HashMap<>();
+	    personas.forEach(p -> participantes.put(p, porcentaje));
+	}
 
 	public Map<Persona, Double> getParticipantes() {
 		return Collections.unmodifiableMap(participantes);
@@ -41,13 +49,24 @@ public class CuentaCompartida extends Cuenta {
 		}
 		return obtenerGastos().stream().filter(g -> g.getPersona().equals(persona)).collect(Collectors.toList());
 	}
+	
+	public Map<Persona, Double> calcularSaldos() {
+	    double total = calcularTotal();
+	    Map<Persona, Double> saldos = new HashMap<>();
 
-	public Map<Persona, Double> calcularTotalPorParticipante() {
-		double total = calcularTotal();
-		Map<Persona, Double> totales = new HashMap<>();
-		for (Map.Entry<Persona, Double> entry : participantes.entrySet()) {
-			totales.put(entry.getKey(), total * entry.getValue() / 100.0);
-		}
-		return totales;
+	    for (Map.Entry<Persona, Double> entry : participantes.entrySet()) {
+	        Persona persona = entry.getKey();
+	        double porcentaje = entry.getValue();
+
+	        double pagado = obtenerGastos().stream()
+	            .filter(g -> g.getPersona().equals(persona))
+	            .mapToDouble(Gasto::getValor)
+	            .sum();
+
+	        double deberiaHaberPagado = total * porcentaje / 100.0;
+
+	        saldos.put(persona, pagado - deberiaHaberPagado);
+	    }
+	    return saldos;
 	}
 }

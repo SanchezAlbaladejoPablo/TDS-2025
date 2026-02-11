@@ -1,5 +1,7 @@
 package com.tds.gestiongastos.modelo;
 
+import java.util.Objects;
+
 public class Categoria {
 
 	private String nombre;
@@ -40,6 +42,25 @@ public class Categoria {
 
 	public void setActiva(boolean activa) {
 		this.activa = activa;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, tipo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categoria other = (Categoria) obj;
+		return activa == other.activa && Objects.equals(nombre, other.nombre) && tipo == other.tipo;
 	}
 
 	@Override

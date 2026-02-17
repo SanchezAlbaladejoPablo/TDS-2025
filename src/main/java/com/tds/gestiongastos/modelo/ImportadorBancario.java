@@ -46,8 +46,11 @@ public class ImportadorBancario implements ImportadorGastos {
             String nombrePersona = campos[5].trim();
             double valor = Double.parseDouble(campos[6].trim());
 
-            Persona persona = new Persona(0, nombrePersona, "");
-            Categoria categoria = new Categoria(categoriaNombre);
+            GestorUsuarios gestorU = GestorUsuarios.getInstance();
+            GestorCategoria gestorC = GestorCategoria.getInstance();
+      
+            Persona persona = gestorU.obtenerOCrearPersona(nombrePersona);
+            Categoria categoria = gestorC.obtenerOCrearCategoria(categoriaNombre);
 
             return new Gasto(valor, concepto, persona, categoria, fecha);
 

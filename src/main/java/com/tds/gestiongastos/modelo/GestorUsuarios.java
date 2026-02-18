@@ -46,6 +46,14 @@ public class GestorUsuarios {
         return usuarios;
     }
     
+ // Añadir este método a GestorUsuarios.java
+    public Persona obtenerUsuarioPorId(int id) {
+        return usuarios.values().stream()
+            .filter(p -> p.getId() == id)
+            .findFirst()
+            .orElse(null);
+    }
+    
     public Persona obtenerOCrearPersona(String nombre) {
         //Se busca si existe el usuario
         Persona existente = usuarios.get(nombre);

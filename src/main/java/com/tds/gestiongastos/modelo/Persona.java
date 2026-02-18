@@ -2,41 +2,53 @@ package com.tds.gestiongastos.modelo;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Persona {
 
-    private final int id;
-    private String usuario;
-    private String password;
+	@JsonProperty("id")
+	private int id;
 
-    public Persona(int id, String usuario, String password) {
-        this.id = id;
-        this.usuario = usuario;
-        this.password = password;
-    }
+	@JsonProperty("usuario")
+	private String usuario;
 
-    public int getId() {
-        return id;
-    }
+	@JsonProperty("password")
+	private String password;
 
-    public String getUsuario() {
-        return usuario;
-    }
+	// Constructor vacío para Jackson
+	public Persona() {
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public Persona(int id, String usuario, String password) {
+		this.id = id;
+		this.usuario = usuario;
+		this.password = password;
+	}
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getUsuario() {
+		return usuario;
+	}
 
-    
-    
-    @Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -50,11 +62,11 @@ public class Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Persona other = (Persona) obj;
-		return id == other.id && Objects.equals(password, other.password) && Objects.equals(usuario, other.usuario);
+		return id == other.id;
 	}
 
 	@Override
-    public String toString() {
-        return "Persona{id=" + id + ", usuario='" + usuario + "'}";
-    }
+	public String toString() {
+		return "Persona{id=" + id + ", usuario='" + usuario + "'}";
+	}
 }

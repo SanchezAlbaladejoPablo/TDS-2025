@@ -2,13 +2,26 @@ package com.tds.gestiongastos.modelo;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nombre")
 public class Categoria {
 
+	@JsonProperty("nombre")
 	private String nombre;
-	private final TipoCate tipo;
+
+	@JsonProperty("tipo")
+	private TipoCate tipo;
+
+	@JsonProperty("activa")
 	private boolean activa;
 
-	
+	// Constructor vacío para Jackson
+	public Categoria() {
+	}
+
 	// Categoría predefinida
 	public Categoria(CatPredef predefinida) {
 		this.nombre = predefinida.getNombre();
@@ -25,7 +38,6 @@ public class Categoria {
 
 	public String getNombre() {
 		return nombre;
-
 	}
 
 	public TipoCate getTipo() {
@@ -44,8 +56,6 @@ public class Categoria {
 		this.activa = activa;
 	}
 
-	
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(nombre, tipo);
@@ -60,12 +70,11 @@ public class Categoria {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		return activa == other.activa && Objects.equals(nombre, other.nombre) && tipo == other.tipo;
+		return Objects.equals(nombre, other.nombre) && tipo == other.tipo;
 	}
 
 	@Override
 	public String toString() {
 		return "Categoria [nombre=" + nombre + ", tipo=" + tipo + ", activa=" + activa + "]";
 	}
-
 }

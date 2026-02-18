@@ -4,11 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipo_cuenta")
+@JsonSubTypes({ @JsonSubTypes.Type(value = Cuenta.class, name = "individual"),
+		@JsonSubTypes.Type(value = CuentaCompartida.class, name = "compartida") })
 public class Cuenta {
 
+	@JsonProperty("nombreCuenta")
 	private String nombreCuenta;
+
+	@JsonProperty("titular")
 	private Persona titular;
+
+	@JsonProperty("gastos")
 	private List<Gasto> gastos;
+
+	// Constructor vacío para Jackson
+	public Cuenta() {
+		this.gastos = new ArrayList<>();
+	}
 
 	public Cuenta(String nombreCuenta, Persona titular) {
 		this.nombreCuenta = nombreCuenta;
@@ -16,41 +33,28 @@ public class Cuenta {
 		this.gastos = new ArrayList<>();
 	}
 
-	// Añadir gasto
 	public void añadirGasto(Gasto gasto) {
 		if (gasto != null) {
 			gastos.add(gasto);
 		}
 	}
 
-	// Eliminar gasto
 	public boolean eliminarGasto(Gasto gasto) {
 		return gastos.remove(gasto);
 	}
 
-	// Obtener lista de gastos
 	public List<Gasto> obtenerGastos() {
 		return new ArrayList<>(gastos);
 	}
 
-	// Obtener el gasto por persona
 	public List<Gasto> obtenerGastosPorPersona(Persona persona) {
 		return gastos.stream().filter(g -> g.getPersona().equals(persona)).collect(Collectors.toList());
 	}
 
-	// Calcular total de gastos
 	public double calcularTotal() {
 		return gastos.stream().mapToDouble(Gasto::getValor).sum();
 	}
 
-	public double calcularTotalPorPersona(Persona persona) {
-		if (!titular.equals(persona)) {
-			return 0.0;
-		}
-		return calcularTotal();
-	}
-
-	// Getters
 	public String getNombreCuenta() {
 		return nombreCuenta;
 	}
@@ -58,5 +62,4 @@ public class Cuenta {
 	public Persona getTitular() {
 		return titular;
 	}
-
 }

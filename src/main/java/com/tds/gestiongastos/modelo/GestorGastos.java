@@ -1,14 +1,23 @@
 package com.tds.gestiongastos.modelo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GestorGastos {
 
+    private static GestorGastos instance;
     private List<Cuenta> cuentas;
 
-    public GestorGastos() {
+    private GestorGastos() {
         this.cuentas = new ArrayList<>();
+    }
+
+    public static GestorGastos getInstance() {
+        if (instance == null) {
+            instance = new GestorGastos();
+        }
+        return instance;
     }
 
     public void añadirCuenta(Cuenta cuenta) {

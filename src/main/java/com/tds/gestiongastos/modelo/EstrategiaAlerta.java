@@ -2,16 +2,14 @@ package com.tds.gestiongastos.modelo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-/* Se crea como Interfaz porque así define la estrategia para calcular el gasto en un periodo de tiempo.
- Se utiliza el patrón Estrategia para permitir diferentes formas de calcular
- el periodo (semanal, mensual, etc.) sin modificar la clase Alerta.
- Para añadir un nuevo tipo de periodo, basta con crear una nueva implementación
- de esta interfaz.
-*/
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipo_estrategia")
+@JsonSubTypes({ @JsonSubTypes.Type(value = AlertaSemanal.class, name = "semanal"),
+		@JsonSubTypes.Type(value = AlertaMensual.class, name = "mensual") })
 public interface EstrategiaAlerta {
-	
-	
+
 	double calcularGastoEnPeriodo(List<Gasto> gastos);
 
 	String getDescripcion();

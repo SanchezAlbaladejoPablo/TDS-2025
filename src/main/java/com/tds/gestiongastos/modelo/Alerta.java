@@ -4,12 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Alerta {
 
-    private final double limite;
-    private final Categoria categoria; // puede ser null (alerta general)
-    private final EstrategiaAlerta estrategia;
-    private final List<Notificacion> notificaciones;
+    @JsonProperty("limite")
+    private double limite;
+
+    @JsonProperty("categoria")
+    private Categoria categoria;
+
+    @JsonProperty("estrategia")
+    private EstrategiaAlerta estrategia;
+
+    @JsonProperty("notificaciones")
+    private List<Notificacion> notificaciones;
+
+    // Constructor vacío para Jackson
+    public Alerta() {
+        this.notificaciones = new ArrayList<>();
+    }
 
     public Alerta(double limite, EstrategiaAlerta estrategia, Categoria categoria) {
         this.limite = limite;
@@ -18,13 +32,11 @@ public class Alerta {
         this.notificaciones = new ArrayList<>();
     }
 
-    // Constructor para alerta sin categoría
     public Alerta(double limite, EstrategiaAlerta estrategia) {
         this(limite, estrategia, null);
     }
 
     public void comprobar(List<Gasto> gastos) {
-        // Si hay categoría, filtrar solo esos gastos
         List<Gasto> gastosFiltrados = gastos;
         if (categoria != null) {
             gastosFiltrados = gastos.stream()

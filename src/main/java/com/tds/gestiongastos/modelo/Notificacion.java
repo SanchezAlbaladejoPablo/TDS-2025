@@ -2,11 +2,23 @@ package com.tds.gestiongastos.modelo;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Notificacion {
 
-    private final String mensaje;
-    private final LocalDateTime fecha;
+    @JsonProperty("mensaje")
+    private String mensaje;
+
+    @JsonProperty("fecha")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime fecha;
+
+    @JsonProperty("leida")
     private boolean leida;
+
+    // Constructor vacío para Jackson
+    public Notificacion() { }
 
     public Notificacion(String mensaje) {
         this.mensaje = mensaje;
@@ -24,7 +36,7 @@ public class Notificacion {
 
     @Override
     public String toString() {
-        return "Notificacion [" + fecha + "] " + mensaje 
+        return "Notificacion [" + fecha + "] " + mensaje
             + (leida ? " (leída)" : " (no leída)");
     }
 }

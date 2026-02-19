@@ -13,8 +13,9 @@ public class GestorUsuarios {
 
     private GestorUsuarios() {
         usuarios = new HashMap<>();
+        nextId = 1;
         // Usuario de prueba por defecto
-        registrar("admin", "1234");
+        // registrar("admin", "1234");
     }
 
     public static GestorUsuarios getInstance() {
@@ -65,6 +66,15 @@ public class GestorUsuarios {
         Persona nueva = new Persona(nextId++, nombre, "");
         usuarios.put(nombre, nueva);
         return nueva;
+    }
+    
+ // Añadir este método
+    public void cargarUsuario(Persona persona) {
+        usuarios.put(persona.getUsuario(), persona);
+        // Mantener el contador de IDs actualizado
+        if (persona.getId() >= nextId) {
+            nextId = persona.getId() + 1;
+        }
     }
     
 }

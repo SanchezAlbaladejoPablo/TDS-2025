@@ -8,9 +8,11 @@ public class GestorGastos {
 
     private static GestorGastos instance;
     private List<Cuenta> cuentas;
+    private List<Alerta> alertas;
 
     private GestorGastos() {
         this.cuentas = new ArrayList<>();
+        this.alertas = new ArrayList<>();
     }
 
     public static GestorGastos getInstance() {
@@ -20,6 +22,7 @@ public class GestorGastos {
         return instance;
     }
 
+    // --- Cuentas ---
     public void añadirCuenta(Cuenta cuenta) {
         if (cuenta != null) {
             cuentas.add(cuenta);
@@ -44,5 +47,28 @@ public class GestorGastos {
         return obtenerGastosPorPersona(persona).stream()
             .mapToDouble(Gasto::getValor)
             .sum();
+    }
+
+    // --- Alertas ---
+    public void añadirAlerta(Alerta alerta) {
+        if (alerta != null) {
+            alertas.add(alerta);
+        }
+    }
+
+    public boolean eliminarAlerta(Alerta alerta) {
+        return alertas.remove(alerta);
+    }
+
+    public List<Alerta> obtenerAlertas() {
+        return new ArrayList<>(alertas);
+    }
+
+    // Comprueba todas las alertas de una persona
+    public void comprobarAlertas(Persona persona) {
+        List<Gasto> gastos = obtenerGastosPorPersona(persona);
+        for (Alerta alerta : alertas) {
+            alerta.comprobar(gastos);
+        }
     }
 }

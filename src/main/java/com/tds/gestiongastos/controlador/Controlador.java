@@ -1,72 +1,29 @@
 package com.tds.gestiongastos.controlador;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import com.tds.gestiongastos.modelo.Persona;
-import com.tds.gestiongastos.modelo.GestorUsuarios;
+import java.util.List;
+import java.util.Map;
+
+import com.tds.gestiongastos.modelo.*;
+import com.tds.gestiongastos.persistencia.GestorPersistencia;
 
 public class Controlador {
 
-    private Stage stage;
     private static Controlador instance;
-
     private Persona usuarioActual;
 
-    public Controlador(Stage stage) {
-        instance = this;
-        this.stage = stage;
-        mostrarLogin();
+    private Controlador() {
+        GestorPersistencia.getInstance().cargarDatos();
     }
 
     public static Controlador getInstance() {
+        if (instance == null) {
+            instance = new Controlador();
+        }
         return instance;
     }
 
-    /* ============================
-       MÉTODOS DE GESTIÓN DE VISTAS
-       ============================ */
-
-    public void mostrarLogin() {
-        cargarVista("/vista/ventana_login.fxml", "Iniciar sesión");
-    }
-
-    public void mostrarRegistro() {
-        cargarVista("/vista/ventana_registro.fxml", "Registro de usuario");
-    }
-
-    public void mostrarMenu() {
-        cargarVista("/vista/ventana_menu.fxml", "Menú principal");
-    }
-
-    private void cargarVista(String fxml, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            loader.setController(this); 
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/estilos/estilos.css").toExternalForm());
-
-            stage.setScene(scene);
-            stage.setTitle(titulo);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /* ============================
-       LÓGICA DE USUARIOS
-       ============================ */
-
-    // Autenticación
-    public boolean autenticarUsuario(String usuario, String password) {
+    // --- Usuarios ---
+    public boolean autenticar(String usuario, String password) {
         GestorUsuarios gestor = GestorUsuarios.getInstance();
         if (gestor.autenticar(usuario, password)) {
             this.usuarioActual = gestor.obtenerUsuario(usuario);
@@ -75,15 +32,10 @@ public class Controlador {
         return false;
     }
 
-    // Registro de nuevo usuario
-    public boolean registrarUsuario(String usuario, String password) {
-        GestorUsuarios gestor = GestorUsuarios.getInstance();
-        boolean exito = gestor.registrar(usuario, password);
+    public boolean registrar(String usuario, String password) {
+        boolean exito = GestorUsuarios.getInstance().registrar(usuario, password);
         if (exito) {
-            this.usuarioActual = gestor.obtenerUsuario(usuario);
-            System.out.println("✅ Usuario registrado con éxito: " + usuario);
-        } else {
-            System.out.println("⚠️ El usuario '" + usuario + "' ya existe.");
+            guardar();
         }
         return exito;
     }
@@ -92,75 +44,84 @@ public class Controlador {
         return usuarioActual;
     }
 
-    /* ============================
-       EVENTOS DE LOGIN
-       ============================ */
-
-    @FXML private TextField campoUsuario;
-    @FXML private PasswordField campoPassword;
-
-    @FXML
-    private void handleLogin() {
-        String usuario = campoUsuario.getText();
-        String password = campoPassword.getText();
-
-        if (autenticarUsuario(usuario, password)) {
-            mostrarMenu();
-        } else {
-            mostrarAlerta(AlertType.ERROR, "Error de autenticación", "Usuario o contraseña incorrectos.");
-        }
+    // --- Cuentas ---
+    public void crearCuenta(String nombre) {
+        Cuenta cuenta = new Cuenta(nombre, usuarioActual);
+        GestorGastos.getInstance().añadirCuenta(cuenta);
+        guardar();
     }
 
-    @FXML
-    private void handleRegistro() {
-        mostrarRegistro();
+    public void crearCuentaCompartida(String nombre, List<Persona> participantes) {
+        CuentaCompartida cuenta = new CuentaCompartida(nombre, usuarioActual, participantes);
+        GestorGastos.getInstance().añadirCuenta(cuenta);
+        guardar();
     }
 
-    /* ============================
-       EVENTOS DE REGISTRO
-       ============================ */
-
-    @FXML private PasswordField campoConfirmar;
-
-    @FXML
-    private void handleRegistrar() {
-        String usuario = campoUsuario.getText();
-        String password = campoPassword.getText();
-        String confirmar = campoConfirmar.getText();
-
-        if (usuario == null || usuario.isEmpty() || password.isEmpty() || confirmar.isEmpty()) {
-            mostrarAlerta(AlertType.WARNING, "Campos vacíos", "Debes rellenar todos los campos.");
-            return;
-        }
-
-        if (!password.equals(confirmar)) {
-            mostrarAlerta(AlertType.ERROR, "Error", "Las contraseñas no coinciden.");
-            return;
-        }
-
-        boolean exito = registrarUsuario(usuario, password);
-        if (exito) {
-            mostrarAlerta(AlertType.INFORMATION, "Registro exitoso", "Usuario registrado correctamente.");
-            mostrarLogin();
-        } else {
-            mostrarAlerta(AlertType.ERROR, "Error", "El nombre de usuario ya existe.");
-        }
+    public void crearCuentaCompartida(String nombre, Map<Persona, Double> porcentajes) {
+        CuentaCompartida cuenta = new CuentaCompartida(nombre, usuarioActual, porcentajes);
+        GestorGastos.getInstance().añadirCuenta(cuenta);
+        guardar();
     }
 
-    @FXML
-    private void handleVolverLogin() {
-        mostrarLogin();
+    public List<Cuenta> obtenerCuentas() {
+        return GestorGastos.getInstance().obtenerCuentas();
     }
 
-    /* ============================
-       UTILIDAD GENERAL
-       ============================ */
+    // --- Gastos ---
+    public void registrarGasto(Cuenta cuenta, double valor, String concepto, String categoriaNombre) {
+        Categoria categoria = GestorCategoria.getInstance().obtenerOCrearCategoria(categoriaNombre);
+        Gasto gasto = new Gasto(valor, concepto, usuarioActual, categoria);
+        cuenta.añadirGasto(gasto);
+        guardar();
+    }
 
-    private void mostrarAlerta(AlertType tipo, String titulo, String mensaje) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+    public List<Gasto> obtenerGastosUsuarioActual() {
+        return GestorGastos.getInstance().obtenerGastosPorPersona(usuarioActual);
+    }
+
+    public double obtenerTotalUsuarioActual() {
+        return GestorGastos.getInstance().calcularTotalPorPersona(usuarioActual);
+    }
+
+    // --- Categorías ---
+    public List<Categoria> obtenerCategorias() {
+        return List.copyOf(GestorCategoria.getInstance().getCategorias().values());
+    }
+
+    // --- Alertas ---
+    public void crearAlerta(double limite, EstrategiaAlerta estrategia, Categoria categoria) {
+        Alerta alerta = new Alerta(limite, estrategia, categoria);
+        GestorGastos.getInstance().añadirAlerta(alerta);
+        guardar();
+    }
+
+    public void crearAlerta(double limite, EstrategiaAlerta estrategia) {
+        Alerta alerta = new Alerta(limite, estrategia);
+        GestorGastos.getInstance().añadirAlerta(alerta);
+        guardar();
+    }
+
+    public List<Alerta> obtenerAlertas() {
+        return GestorGastos.getInstance().obtenerAlertas();
+    }
+
+    public void comprobarAlertas() {
+        GestorGastos.getInstance().comprobarAlertas(usuarioActual);
+    }
+
+    // --- Importar ---
+    public int importarGastos(Cuenta cuenta, String formato, String ruta) {
+        ImportadorGastos importador = FactoriaImportador.crearImportador(formato);
+        List<Gasto> gastos = importador.importar(ruta);
+        for (Gasto gasto : gastos) {
+            cuenta.añadirGasto(gasto);
+        }
+        guardar();
+        return gastos.size();
+    }
+
+    // --- Persistencia ---
+    private void guardar() {
+        GestorPersistencia.getInstance().guardarDatos();
     }
 }

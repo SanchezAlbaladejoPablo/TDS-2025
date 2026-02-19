@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.tds.gestiongastos.vista.RegistrarGastoViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Registrar nuevo gasto" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Cuenta:" prefWidth="80"/>
+        <ComboBox fx:id="comboCuentas" prefWidth="250" promptText="Selecciona cuenta"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Concepto:" prefWidth="80"/>
+        <TextField fx:id="campoConcepto" prefWidth="250" promptText="Descripción del gasto"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Valor (€):" prefWidth="80"/>
+        <TextField fx:id="campoValor" prefWidth="250" promptText="0.00"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Categoría:" prefWidth="80"/>
+        <ComboBox fx:id="comboCategorias" prefWidth="200" promptText="Selecciona categoría" editable="true"/>
+    </HBox>
+
+    <Button text="Registrar gasto" onAction="#handleRegistrar" styleClass="boton-login"/>
+
+    <Label fx:id="labelResultado" text="" style="-fx-text-fill: green;"/>
+</VBox>

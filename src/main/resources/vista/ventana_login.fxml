@@ -7,21 +7,29 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane styleClass="root-pane" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="root-pane"
+	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.tds.gestiongastos.vista.LoginViewController">
 
-    <VBox alignment="CENTER" maxWidth="400" spacing="20" styleClass="login-box">
+	<VBox alignment="CENTER" maxWidth="400" spacing="20"
+		styleClass="login-box">
 
-        <Label styleClass="titulo" text="GESTOR DE GASTOS" textAlignment="CENTER" />
+		<Label styleClass="titulo" text="GESTOR DE GASTOS"
+			textAlignment="CENTER" />
 
-        <VBox alignment="CENTER" spacing="10">
-            <TextField fx:id="campoUsuario" maxWidth="250" promptText="Usuario" />
-            <PasswordField fx:id="campoPassword" maxWidth="250" promptText="Contraseña" />
-        </VBox>
+		<VBox alignment="CENTER" spacing="10">
+			<TextField fx:id="campoUsuario" maxWidth="250"
+				promptText="Usuario" />
+			<PasswordField fx:id="campoPassword" maxWidth="250"
+				promptText="Contraseña" />
+		</VBox>
 
-        <VBox alignment="CENTER" spacing="10">
-            <Button maxWidth="250" onAction="#handleLogin" styleClass="boton-login" text="Iniciar sesión" />
-            <Button maxWidth="250" onAction="#handleRegistro" styleClass="boton-secundario" text="Registrarse" />
-        </VBox>
+		<VBox alignment="CENTER" spacing="10">
+			<Button maxWidth="250" onAction="#handleLogin"
+				styleClass="boton-login" text="Iniciar sesión" />
+			<Button maxWidth="250" onAction="#handleRegistro"
+				styleClass="boton-secundario" text="Registrarse" />
+		</VBox>
 
-    </VBox>
+	</VBox>
 </StackPane>

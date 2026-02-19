@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.tds.gestiongastos.vista.ImportarViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Importar datos" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Cuenta:" prefWidth="80"/>
+        <ComboBox fx:id="comboCuentas" prefWidth="250" promptText="Selecciona cuenta"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Archivo:" prefWidth="80"/>
+        <TextField fx:id="campoRuta" prefWidth="200" promptText="Ruta del archivo" editable="false"/>
+        <Button text="Examinar..." onAction="#handleExaminar"/>
+    </HBox>
+
+    <Button text="Importar" onAction="#handleImportar" styleClass="boton-login"/>
+
+    <Label fx:id="labelResultado" text="" style="-fx-font-size: 14px;"/>
+</VBox>

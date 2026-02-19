@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.tds.gestiongastos.vista.AlertasViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Configurar alertas" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Límite (€):" prefWidth="80"/>
+        <TextField fx:id="campoLimite" prefWidth="250" promptText="500.00"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Periodo:" prefWidth="80"/>
+        <ComboBox fx:id="comboPeriodo" prefWidth="250" promptText="Selecciona periodo"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Categoría:" prefWidth="80"/>
+        <ComboBox fx:id="comboCategoria" prefWidth="250" promptText="Todas (general)"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Crear alerta" onAction="#handleCrearAlerta" styleClass="boton-login"/>
+        <Button text="Comprobar alertas" onAction="#handleComprobar" styleClass="boton-secundario"
+                style="-fx-border-color: #333; -fx-text-fill: #333;"/>
+    </HBox>
+
+    <Label text="Alertas activas" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <ListView fx:id="listaAlertas" prefHeight="120"/>
+
+    <Label text="Notificaciones" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <ListView fx:id="listaNotificaciones" prefHeight="120"/>
+
+    <Label fx:id="labelResultado" text=""/>
+</VBox>

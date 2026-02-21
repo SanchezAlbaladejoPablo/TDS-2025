@@ -1,4 +1,4 @@
-# Gestión de Gastos Personales
+# Gestor de Gastos Personales
 
 ## Participantes
 Este proyecto ha sido realizado por: 
@@ -18,7 +18,7 @@ Este proyecto consiste en el desarrollo de una aplicación de escritorio para la
     cd GestionGastos
     ```
 2.  **Compilar y ejecutar con Maven:**
-    Asegúrate de tener Maven y un JDK 21 instalado.
+    Asegúrese de tener Maven y un JDK 21 instalado.
     ```bash
     mvn clean javafx:run
     ```
@@ -43,29 +43,68 @@ La documentación detallada del proyecto se encuentra en la carpeta `docs/`.
 ├── README.md
 ├── lib/
 │   └── .gitkeep
-├── test-h2/
-│   └── .gitkeep
 ├── docs/
-│   ├── arquitectura_diseno.md
-│   ├── diagrama_clases_dominio.md
-│   ├── diagrama_interaccion.md
-│   ├── historias_usuario.md
-│   ├── manual_usuario.md
+│   └── arquitectura_diseno.md
+│   └── diagrama_clases_dominio.md
+│   └── diagrama_interaccion.md
+│   └── historias_usuario.md
+│   └── manual_usuario.md
 │   └── patrones_diseno.md
 └── src/
     ├── com/
     │   └── tds/
     │       └── gestiongastos/
+    │           ├── app/
+    │               └──Main.java
     │           ├── controlador/
-    │           │   └── controlador.java
+    │               └── controlador.java
     │           ├── modelo/
-    │           │   └── 
+    │               └── Alerta.java
+    │               └── AlertaMensual.java
+    │               └── AlertaSemanal.java
+    │               └── Categoria.java
+    │               └── CatPredef.java
+    │               └── Cuenta.java
+    │               └── CuentaCompartida.java
+    │               └── EstrategiaAlerta.java
+    │               └── FactoriaImporador.java
+    │               └── Gasto.java
+    │               └── GestorCategoria.java
+    │               └── GestorGastos.java
+    │               └── GestorUsuarios.java
+    │               └── ImportadorBancario.java
+    │               └── ImportadorGastos.java
+    │               └── Notificacion.java
+    │               └── Persona.java
+    │               └── TipoCate.java
     │           ├── persistencia/
-    │           │   └── 
-    │           └── vista/
-    │               └── 
+    │               └── DatosApp.java
+    │               └── GestorPersistencia.java
+    │               └── Repositorio.java
+    │               └── RepositorioJSON.java
+    │           ├── vista/
+    │               └── AlertasViewController.java
+    │               └── CrearCuentaViewController.java
+    │               └── ImportarViewController.java
+    │               └── LoginViewController.java
+    │               └── MenuViewController.java
+    │               └── RegistrarGastoViewController.java
+    │               └── RegistroViewController.java
+    │               └── SceneManager.java
+    │               └── VerGastosViewController.java
     ├── resources/
     │   └── .gitkeep
+    │   └── estilos/
+    │       └── estilos.css
+    │   └── vista/
+    │       └── panel_alertas.fxml
+    │       └── panel_crear_cuenta.fxml
+    │       └── panel_importar.fxml
+    │       └── panel_registrar_gasto.fxml
+    │       └── panel_ver_gasto.fxml
+    │       └── ventana_login.fxml
+    │       └── ventana_menu.fxml
+    │       └── ventana_registro.fxml
     └── test/
         └── java/
             └── .gitkeep

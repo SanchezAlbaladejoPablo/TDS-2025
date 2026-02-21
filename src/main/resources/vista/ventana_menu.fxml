@@ -20,7 +20,7 @@
 			<Pane HBox.hgrow="ALWAYS" />
 			<Button fx:id="botonUsuario" styleClass="user-button"
 				text="Usuario" />
-			<Button styleClass="user-button" text="Cerrar sesión"
+			<Button styleClass="logout-button" text="Cerrar sesión"
 				onAction="#cerrarSesion" />
 		</HBox>
 	</top>

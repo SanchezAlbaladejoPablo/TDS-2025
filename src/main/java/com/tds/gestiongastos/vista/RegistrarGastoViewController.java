@@ -36,7 +36,7 @@ public class RegistrarGastoViewController {
 	}
 
 	@FXML
-	private void handleRegistrar() {
+	private void registrarGasto() {
 		String nombreCuenta = comboCuentas.getValue();
 		String concepto = campoConcepto.getText();
 		String valorStr = campoValor.getText();

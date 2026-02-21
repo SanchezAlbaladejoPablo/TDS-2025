@@ -1,0 +1,22 @@
+{
+  "usuarios" : [ {
+    "id" : 1,
+    "usuario" : "jaka",
+    "password" : "jaka"
+  } ],
+  "categorias" : [ {
+    "nombre" : "Transporte",
+    "tipo" : "PREDEFINIDA",
+    "activa" : true
+  }, {
+    "nombre" : "Entretenimiento",
+    "tipo" : "PREDEFINIDA",
+    "activa" : true
+  }, {
+    "nombre" : "Alimentacion",
+    "tipo" : "PREDEFINIDA",
+    "activa" : true
+  } ],
+  "cuentas" : [ ],
+  "alertas" : [ ]
+}

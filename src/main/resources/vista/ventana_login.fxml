@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <StackPane styleClass="root-pane"
-	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.tds.gestiongastos.vista.LoginViewController">
 
 	<VBox alignment="CENTER" maxWidth="400" spacing="20"
@@ -25,9 +25,9 @@
 		</VBox>
 
 		<VBox alignment="CENTER" spacing="10">
-			<Button maxWidth="250" onAction="#handleLogin"
+			<Button maxWidth="250" onAction="#login"
 				styleClass="boton-login" text="Iniciar sesión" />
-			<Button maxWidth="250" onAction="#handleRegistro"
+			<Button maxWidth="250" onAction="#registro"
 				styleClass="boton-secundario" text="Registrarse" />
 		</VBox>
 

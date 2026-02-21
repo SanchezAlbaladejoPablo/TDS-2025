@@ -27,30 +27,35 @@ public class MenuViewController {
 
 	// --- Gastos ---
 	@FXML
-	private void handleRegistrarGasto() {
+	private void registrarGasto() {
 		cargarPanel("/vista/panel_registrar_gasto.fxml");
 	}
 
 	@FXML
-	private void handleVerGastos() {
+	private void verGastos() {
 		cargarPanel("/vista/panel_ver_gastos.fxml");
 	}
 
 	// --- Alertas ---
 	@FXML
-	private void handleConfigurarAlertas() {
+	private void configurarAlertas() {
 		cargarPanel("/vista/panel_alertas.fxml");
 	}
 
 	// --- Importar ---
 	@FXML
-	private void handleImportarBanco() {
+	private void importarBanco() {
 		cargarPanel("/vista/panel_importar.fxml");
+	}
+	
+	@FXML
+	private void crearCuenta() {
+	    cargarPanel("/vista/panel_crear_cuenta.fxml");
 	}
 
 	// --- Cerrar sesión ---
 	@FXML
-	private void handleCerrarSesion() {
+	private void cerrarSesion() {
 		SceneManager.getInstance().mostrarLogin();
 	}
 

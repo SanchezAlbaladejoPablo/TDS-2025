@@ -10,7 +10,7 @@ public class CrearCuentaViewController {
     @FXML private Label labelResultado;
 
     @FXML
-    private void handleCrearIndividual() {
+    private void crearCuentaIndividual() {
         String nombre = campoNombre.getText();
 
         if (nombre == null || nombre.isEmpty()) {

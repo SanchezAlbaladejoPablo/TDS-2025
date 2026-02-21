@@ -16,7 +16,7 @@ public class RegistroViewController {
 	private PasswordField campoConfirmar;
 
 	@FXML
-	private void handleRegistrar() {
+	private void registrarUsuario() {
 		String usuario = campoUsuario.getText();
 		String password = campoPassword.getText();
 		String confirmar = campoConfirmar.getText();
@@ -40,7 +40,7 @@ public class RegistroViewController {
 	}
 
 	@FXML
-	private void handleVolverLogin() {
+	private void volverLogin() {
 		SceneManager.getInstance().mostrarLogin();
 	}
 

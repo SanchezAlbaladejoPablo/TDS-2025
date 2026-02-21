@@ -26,10 +26,10 @@
 		</VBox>
 
 		<VBox spacing="10" alignment="CENTER">
-			<Button text="Registrarse" onAction="#handleRegistrar"
+			<Button text="Registrarse" onAction="#registrarUsuario"
 				styleClass="boton-login" maxWidth="250" />
 			<Button text="Volver al inicio de sesión"
-				onAction="#handleVolverLogin" styleClass="boton-secundario"
+				onAction="#volverLogin" styleClass="boton-secundario"
 				maxWidth="250" />
 		</VBox>
 

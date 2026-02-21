@@ -12,7 +12,7 @@ public class LoginViewController {
     @FXML private PasswordField campoPassword;
 
     @FXML
-    private void handleLogin() {
+    private void login() {
         String usuario = campoUsuario.getText();
         String password = campoPassword.getText();
 
@@ -24,7 +24,7 @@ public class LoginViewController {
     }
 
     @FXML
-    private void handleRegistro() {
+    private void registro() {
         SceneManager.getInstance().mostrarRegistro();
     }
 

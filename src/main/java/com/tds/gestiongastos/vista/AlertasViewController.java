@@ -42,7 +42,7 @@ public class AlertasViewController {
 	}
 
 	@FXML
-	private void handleCrearAlerta() {
+	private void crearAlerta() {
 		String limiteStr = campoLimite.getText();
 		String periodo = comboPeriodo.getValue();
 		String categoriaNombre = comboCategoria.getValue();
@@ -93,7 +93,7 @@ public class AlertasViewController {
 	}
 
 	@FXML
-	private void handleComprobar() {
+	private void verificarAlertas() {
 		Controlador.getInstance().comprobarAlertas();
 		actualizarListas();
 		labelResultado.setText("Alertas comprobadas.");

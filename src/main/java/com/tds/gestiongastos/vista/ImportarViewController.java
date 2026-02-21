@@ -30,7 +30,7 @@ public class ImportarViewController {
 	}
 
 	@FXML
-	private void handleExaminar() {
+	private void buscarArchivo() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Seleccionar archivo CSV");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
@@ -42,7 +42,7 @@ public class ImportarViewController {
 	}
 
 	@FXML
-	private void handleImportar() {
+	private void importarArchivo() {
 		String nombreCuenta = comboCuentas.getValue();
 
 		if (nombreCuenta == null || nombreCuenta.isEmpty()) {

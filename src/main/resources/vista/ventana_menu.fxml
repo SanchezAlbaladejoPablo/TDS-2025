@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane styleClass="root-pane"
-	xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.tds.gestiongastos.vista.MenuViewController">
 
 	<top>
@@ -21,7 +21,7 @@
 			<Button fx:id="botonUsuario" styleClass="user-button"
 				text="Usuario" />
 			<Button styleClass="user-button" text="Cerrar sesión"
-				onAction="#handleCerrarSesion" />
+				onAction="#cerrarSesion" />
 		</HBox>
 	</top>
 
@@ -36,27 +36,27 @@
 				<VBox spacing="5">
 					<Label styleClass="menu-title" text="Gastos" />
 					<Button styleClass="menu-button" text="Registrar gasto"
-						onAction="#handleRegistrarGasto" />
+						onAction="#registrarGasto" />
 					<Button styleClass="menu-button" text="Ver gastos"
-						onAction="#handleVerGastos" />
+						onAction="#verGastos" />
 				</VBox>
 
 				<VBox spacing="5">
 					<Label styleClass="menu-title" text="Alertas" />
 					<Button styleClass="menu-button" text="Configurar alertas"
-						onAction="#handleConfigurarAlertas" />
+						onAction="#configurarAlertas" />
 				</VBox>
 
 				<VBox spacing="5">
 					<Label styleClass="menu-title" text="Cuentas" />
 					<Button styleClass="menu-button" text="Crear cuenta"
-						onAction="#handleCrearCuenta" />
+						onAction="#crearCuenta" />
 				</VBox>
 
 				<VBox spacing="5">
 					<Label styleClass="menu-title" text="Importar datos" />
 					<Button styleClass="menu-button" text="Importar desde banco"
-						onAction="#handleImportarBanco" />
+						onAction="#importarBanco" />
 				</VBox>
 
 			</VBox>

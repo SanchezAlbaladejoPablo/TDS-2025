@@ -34,8 +34,8 @@
     </HBox>
 
     <HBox spacing="10">
-        <Button text="Crear alerta" onAction="#handleCrearAlerta" styleClass="boton-login"/>
-        <Button text="Comprobar alertas" onAction="#handleComprobar" styleClass="boton-secundario"
+        <Button text="Crear alerta" onAction="#crearAlerta" styleClass="boton-login"/>
+        <Button text="Comprobar alertas" onAction="#verificarAlertas" styleClass="boton-secundario"
                 style="-fx-border-color: #333; -fx-text-fill: #333;"/>
     </HBox>
 

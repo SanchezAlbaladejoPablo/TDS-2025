@@ -37,7 +37,7 @@
         <ComboBox fx:id="comboCategorias" prefWidth="200" promptText="Selecciona categoría" editable="true"/>
     </HBox>
 
-    <Button text="Registrar gasto" onAction="#handleRegistrar" styleClass="boton-login"/>
+    <Button text="Registrar gasto" onAction="#registrarGasto" styleClass="boton-login"/>
 
     <Label fx:id="labelResultado" text="" style="-fx-text-fill: green;"/>
 </VBox>

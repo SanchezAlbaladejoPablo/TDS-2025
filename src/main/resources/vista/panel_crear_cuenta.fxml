@@ -21,7 +21,7 @@
         <TextField fx:id="campoNombre" prefWidth="250" promptText="Nombre de la cuenta"/>
     </HBox>
 
-    <Button text="Crear cuenta individual" onAction="#handleCrearIndividual" styleClass="boton-login"/>
+    <Button text="Crear cuenta individual" onAction="#crearCuentaIndividual" styleClass="boton-login"/>
 
     <Label fx:id="labelResultado" text="" style="-fx-text-fill: green;"/>
 </VBox>

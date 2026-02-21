@@ -25,10 +25,10 @@
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Label text="Archivo:" prefWidth="80"/>
         <TextField fx:id="campoRuta" prefWidth="200" promptText="Ruta del archivo" editable="false"/>
-        <Button text="Examinar..." onAction="#handleExaminar"/>
+        <Button text="Examinar..." onAction="#buscarArchivo"/>
     </HBox>
 
-    <Button text="Importar" onAction="#handleImportar" styleClass="boton-login"/>
+    <Button text="Importar" onAction="#importarArchivo" styleClass="boton-login"/>
 
     <Label fx:id="labelResultado" text="" style="-fx-font-size: 14px;"/>
 </VBox>

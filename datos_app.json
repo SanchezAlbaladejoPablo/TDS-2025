@@ -17,6 +17,26 @@
     "tipo" : "PREDEFINIDA",
     "activa" : true
   } ],
-  "cuentas" : [ ],
-  "alertas" : [ ]
+  "cuentas" : [ {
+    "tipo_cuenta" : "individual",
+    "nombreCuenta" : "jakacuenta",
+    "titular" : 1,
+    "gastos" : [ {
+      "id" : "ad7fdb24-87cf-49c4-9af8-ca97f4b6a663",
+      "valor" : 100.0,
+      "persona" : 1,
+      "concepto" : "gasto 1",
+      "cuenta" : null,
+      "fecha" : "2026-02-22 18:28:44",
+      "categoria" : "Alimentacion"
+    } ]
+  } ],
+  "alertas" : [ {
+    "limite" : 400.0,
+    "categoria" : null,
+    "estrategia" : {
+      "tipo_estrategia" : "mensual"
+    },
+    "notificaciones" : [ ]
+  } ]
 }

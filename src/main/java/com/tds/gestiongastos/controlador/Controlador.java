@@ -82,6 +82,14 @@ public class Controlador {
     public double obtenerTotalUsuarioActual() {
         return GestorGastos.getInstance().calcularTotalPorPersona(usuarioActual);
     }
+    
+    public boolean borrarGasto(Gasto gasto) {
+        boolean exito = GestorGastos.getInstance().borrarGasto(gasto);
+        if (exito) {
+            guardar();
+        }
+        return exito;
+    }
 
     // --- Categorías ---
     public List<Categoria> obtenerCategorias() {

@@ -33,7 +33,7 @@ public class MenuViewController {
 
 	@FXML
 	private void verGastos() {
-		cargarPanel("/vista/panel_ver_gastos.fxml");
+		cargarPanel("/vista/panel_ver_gasto.fxml");
 	}
 
 	// --- Alertas ---

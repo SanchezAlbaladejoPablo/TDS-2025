@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.tds.gestiongastos.persistencia.GestorPersistencia;
+
 public class GestorGastos {
 
     private static GestorGastos instance;
@@ -14,12 +16,18 @@ public class GestorGastos {
         this.cuentas = new ArrayList<>();
         this.alertas = new ArrayList<>();
     }
-
+    
     public static GestorGastos getInstance() {
         if (instance == null) {
             instance = new GestorGastos();
         }
         return instance;
+    }
+    
+    public List<Gasto> getGastos() {
+        return cuentas.stream()
+            .flatMap(c -> c.getGastos().stream())
+            .collect(Collectors.toList());
     }
 
     // --- Cuentas ---
@@ -47,6 +55,28 @@ public class GestorGastos {
         return obtenerGastosPorPersona(persona).stream()
             .mapToDouble(Gasto::getValor)
             .sum();
+    }
+    
+    public boolean borrarGasto(Gasto gasto) {
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getGastos().contains(gasto)) {
+                cuenta.eliminarGasto(gasto);
+                GestorPersistencia.getInstance().guardarDatos();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean editarGasto(Gasto gastoActualizado, double nuevoValor, String nuevoConcepto, Categoria nuevaCat) {
+        if (gastoActualizado != null) {
+            gastoActualizado.setValor(nuevoValor);
+            gastoActualizado.setConcepto(nuevoConcepto);
+            gastoActualizado.setCategoria(nuevaCat);
+            GestorPersistencia.getInstance().guardarDatos();
+            return true;
+        }
+        return false;
     }
 
     // --- Alertas ---

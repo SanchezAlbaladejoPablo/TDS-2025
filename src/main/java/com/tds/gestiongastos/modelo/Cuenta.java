@@ -62,4 +62,9 @@ public class Cuenta {
 	public Persona getTitular() {
 		return titular;
 	}
+	
+	public List<Gasto> getGastos() {
+	    return new ArrayList<>(gastos);
+	}
+	
 }
